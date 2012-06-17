@@ -1,0 +1,4 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
+PROJECT(PCLSuperBuild)
+include( ${CMAKE_SOURCE_DIR}/SuperBuild.cmake )

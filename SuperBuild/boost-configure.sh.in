@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+echo "Configuring Boost"
+cd @CMAKE_BINARY_DIR@/Boost
+./bootstrap.sh --prefix=@CMAKE_BINARY_DIR@/Boost-build

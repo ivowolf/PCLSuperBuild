@@ -1,0 +1,11 @@
+To use this cmake project:
+
+1) Clone the prepository:
+   git clone git://gitorious.org/pclsuperbuild/pclsuperbuild.git PCLSuperBuild
+2) Create a build directory
+   mkdir PCLSuperBuild-build
+3) Configure the build
+   cd PCLSuperBuild-build
+   cmake ../PCLSuperBuild
+4) Build PCL and its requisites
+   make

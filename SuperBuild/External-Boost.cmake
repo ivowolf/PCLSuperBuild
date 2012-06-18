@@ -17,7 +17,9 @@ if( NOT WIN32)
   set(BOOST_INSTALL_COMMAND "${CMAKE_BINARY_DIR}/boost-install.sh")
 endif()
 
-set(BOOST_URL "http://sourceforge.net/projects/boost/files/boost/1.49.0/boost_1_49_0.tar.gz")
+if(NOT BOOST_URL)
+  set(BOOST_URL "http://sourceforge.net/projects/boost/files/boost/1.49.0/boost_1_49_0.tar.gz")
+endif()
 
 ExternalProject_Add(Boost
   URL ${BOOST_URL}

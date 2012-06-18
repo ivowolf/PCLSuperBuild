@@ -3,7 +3,9 @@
 #
 #-----------------------------------------------------------------------------
 
-set( VTK_TAG "v5.10.0" )
+if(NOT VTK_TAG)
+  set( VTK_TAG "v5.10.0" )
+endif()
 
 find_package(Qt4)
 set(USE_QT "OFF")
@@ -26,4 +28,4 @@ ExternalProject_Add(VTK
   INSTALL_COMMAND ""
 )
 
-set(VTK_DIR ${CMAKE_BINARY_DIR}/VTK-build)
+set(VTK_DIR "${CMAKE_BINARY_DIR}/VTK-build")

@@ -2,7 +2,9 @@
 # Get FLANN
 #
 #-----------------------------------------------------------------------------
-set(FLANN_URL "http://people.cs.ubc.ca/~mariusm/uploads/FLANN/flann-1.7.1-src.zip")
+if(NOT FLANN_URL)
+  set(FLANN_URL "http://people.cs.ubc.ca/~mariusm/uploads/FLANN/flann-1.7.1-src.zip")
+endif()
 
 ExternalProject_Add(FLANN
   DEPENDS GTest

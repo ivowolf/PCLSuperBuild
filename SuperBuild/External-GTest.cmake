@@ -3,7 +3,9 @@
 #
 #-----------------------------------------------------------------------------
 
-set(GTEST_URL "http://googletest.googlecode.com/files/gtest-1.6.0.zip")
+if(NOT GTEST_URL)
+  set(GTEST_URL "http://googletest.googlecode.com/files/gtest-1.6.0.zip")
+endif()
 
 ExternalProject_Add(GTest
   URL ${GTEST_URL}

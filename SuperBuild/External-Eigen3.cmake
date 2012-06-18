@@ -2,7 +2,9 @@
 # Get eigen
 #
 #-----------------------------------------------------------------------------
-set(EIGEN3_URL "http://mirrors.mit.edu/ubuntu/pool/universe/e/eigen3/eigen3_3.0.5.orig.tar.bz2")
+if(NOT EIGEN3_URL)
+  set(EIGEN3_URL "http://mirrors.mit.edu/ubuntu/pool/universe/e/eigen3/eigen3_3.0.5.orig.tar.bz2")
+endif()
 
 ExternalProject_Add(Eigen3
   URL ${EIGEN3_URL}

@@ -3,7 +3,9 @@
 #
 #-----------------------------------------------------------------------------
 
-set( QHULL_TAG "master" )
+if(NOT QHULL_TAG)
+  set( QHULL_TAG "master" )
+endif()
 
 ExternalProject_Add(Qhull
   GIT_REPOSITORY "${git_protocol}://gitorious.org/qhull/qhull.git"

@@ -1,3 +1,28 @@
+#
+# This is the main cmake file that defines the external projects
+# 
+# If you prefer to use your our build for a package, define:
+# Boost: BOOST_ROOT
+# Eigen3: EIGEN_INCLUDE_DIR
+# FLANN: FLANN_LIBRARY, FLANN_INCLUDE_DIR
+# GTest: GTEST_ROOT, GTEST_INCLUDE_DIR
+# Qhull: QHULL_LIBRARY, QHULL_INCLUDE_DIR
+# VTK: VTK_DIR
+#
+# If you prefer to use a different version of a package, define:
+# Boost:
+#   set(BOOST_URL "http://sourceforge.net/projects/boost/files/boost/1.49.0/boost_1_49_0.tar.gz")
+# Eigen3:
+#   set(EIGEN3_URL "http://mirrors.mit.edu/ubuntu/pool/universe/e/eigen3/eigen3_3.0.5.orig.tar.bz2")
+# FLANN:
+#   set(FLANN_URL "http://people.cs.ubc.ca/~mariusm/uploads/FLANN/flann-1.7.1-src.zip")
+# GTest:
+#   set(GTEST_URL "http://googletest.googlecode.com/files/gtest-1.6.0.zip")
+# Qhull:
+#    set( QHULL_TAG "master" )
+# VTK:
+#   set( VTK_TAG "release" )
+#
 find_package(Git)
 if(NOT GIT_FOUND)
   message(ERROR "Cannot find git. git is required for Superbuild")

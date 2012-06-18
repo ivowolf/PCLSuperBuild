@@ -4,7 +4,7 @@
 #-----------------------------------------------------------------------------
 
 if(NOT VTK_TAG)
-  set( VTK_TAG "v5.10.0" )
+  set( VTK_TAG "release" )
 endif()
 
 find_package(Qt4)

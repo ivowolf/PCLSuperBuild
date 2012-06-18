@@ -23,6 +23,11 @@ if( NOT BOOST_ROOT )
   list( APPEND PCL_DEPENDENCIES Boost )
 endif()
 
+if( NOT GTEST_ROOT)
+  include( ${CMAKE_SOURCE_DIR}/SuperBuild/External-GTest.cmake )
+  list( APPEND PCL_DEPENDENCIES GTest )
+endif()
+
 if( NOT FLANN_LIBRARY)
   include( ${CMAKE_SOURCE_DIR}/SuperBuild/External-FLANN.cmake )
   list( APPEND PCL_DEPENDENCIES FLANN )
@@ -41,11 +46,6 @@ endif()
 if( NOT QHULL_LIBRARY)
   include( ${CMAKE_SOURCE_DIR}/SuperBuild/External-Qhull.cmake )
   list( APPEND PCL_DEPENDENCIES Qhull )
-endif()
-
-if( NOT GTEST_ROOT)
-  include( ${CMAKE_SOURCE_DIR}/SuperBuild/External-GTest.cmake )
-  list( APPEND PCL_DEPENDENCIES GTest )
 endif()
 
 ExternalProject_Add( PCL

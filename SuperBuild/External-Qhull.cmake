@@ -16,6 +16,7 @@ ExternalProject_Add(Qhull
     -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_BINARY_DIR}/Qhull-install
 )
 
-set(QHULL_LIBRARY ${CMAKE_BINARY_DIR}/Qhull-install/lib/libqhull.so)
 set(QHULL_INCLUDE_DIR ${CMAKE_BINARY_DIR}/Qhull-install/include)
 set(QHULL_ROOT ${CMAKE_BINARY_DIR}/Qhull-install)
+set(QHULL_LIBRARY ${CMAKE_BINARY_DIR}/Qhull-install/lib/libqhull${CMAKE_SHARED_LIBRARY_SUFFIX})
+

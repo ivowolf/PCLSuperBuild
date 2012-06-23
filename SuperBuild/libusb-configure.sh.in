@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+echo "Configuring libusb"
+cd @CMAKE_BINARY_DIR@/libusb
+./autogen.sh
+./configure --prefix=@CMAKE_BINARY_DIR@/libusb-install
+

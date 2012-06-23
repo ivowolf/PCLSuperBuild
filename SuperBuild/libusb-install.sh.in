@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+echo "Installing libusb"
+cd @CMAKE_BINARY_DIR@/libusb
+make install
+

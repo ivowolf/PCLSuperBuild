@@ -43,17 +43,22 @@ endif()
 
 set( PCL_DEPENDENCIES )
 
+if( NOT USB_10_LIBRARY OR NOT USB_10_INCLULDE_DIR)
+  include( ${CMAKE_SOURCE_DIR}/SuperBuild/External-libusb.cmake )
+  list( APPEND PCL_DEPENDENCIES libusb )
+endif()
+
 if( NOT BOOST_ROOT )
   include( ${CMAKE_SOURCE_DIR}/SuperBuild/External-Boost.cmake )
   list( APPEND PCL_DEPENDENCIES Boost )
 endif()
 
-if( NOT GTEST_ROOT)
+if( NOT GTEST_ROOT OR NOT GTEST_INCLUDE_DIR)
   include( ${CMAKE_SOURCE_DIR}/SuperBuild/External-GTest.cmake )
   list( APPEND PCL_DEPENDENCIES GTest )
 endif()
 
-if( NOT FLANN_LIBRARY)
+if( NOT FLANN_LIBRARY OR NOT FLANN_INCLUDE_DIR)
   include( ${CMAKE_SOURCE_DIR}/SuperBuild/External-FLANN.cmake )
   list( APPEND PCL_DEPENDENCIES FLANN )
 endif()
@@ -68,7 +73,7 @@ if( NOT VTK_DIR)
   list( APPEND PCL_DEPENDENCIES VTK )
 endif()
 
-if( NOT QHULL_LIBRARY)
+if( NOT QHULL_LIBRARY OR NOT QHULL_INCLUDE_DIR)
   include( ${CMAKE_SOURCE_DIR}/SuperBuild/External-Qhull.cmake )
   list( APPEND PCL_DEPENDENCIES Qhull )
 endif()

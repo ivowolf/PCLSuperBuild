@@ -5,7 +5,6 @@
 # Boost: BOOST_ROOT
 # Eigen3: EIGEN_INCLUDE_DIR
 # FLANN: FLANN_LIBRARY, FLANN_INCLUDE_DIR
-# GTest: GTEST_ROOT, GTEST_INCLUDE_DIR
 # Qhull: QHULL_LIBRARY, QHULL_INCLUDE_DIR
 # VTK: VTK_DIR
 #
@@ -16,8 +15,6 @@
 #   set(EIGEN3_URL "http://mirrors.mit.edu/ubuntu/pool/universe/e/eigen3/eigen3_3.0.5.orig.tar.bz2")
 # FLANN:
 #   set(FLANN_URL "http://people.cs.ubc.ca/~mariusm/uploads/FLANN/flann-1.7.1-src.zip")
-# GTest:
-#   set(GTEST_URL "http://googletest.googlecode.com/files/gtest-1.6.0.zip")
 # Qhull:
 #    set( QHULL_TAG "master" )
 # VTK:
@@ -51,11 +48,6 @@ endif()
 if( NOT BOOST_ROOT )
   include( ${CMAKE_SOURCE_DIR}/SuperBuild/External-Boost.cmake )
   list( APPEND PCL_DEPENDENCIES Boost )
-endif()
-
-if( NOT GTEST_ROOT OR NOT GTEST_INCLUDE_DIR)
-  include( ${CMAKE_SOURCE_DIR}/SuperBuild/External-GTest.cmake )
-  list( APPEND PCL_DEPENDENCIES GTest )
 endif()
 
 if( NOT FLANN_LIBRARY OR NOT FLANN_INCLUDE_DIR)
@@ -102,9 +94,6 @@ ExternalProject_Add( PCL
     # Qhull
     -DQHULL_LIBRARY:PATH=${QHULL_LIBRARY}
     -DQHULL_INCLUDE_DIR:PATH=${QHULL_INCLUDE_DIR}
-    # GTest
-    -DGTEST_ROOT:PATH=${GTEST_ROOT}
-    -DGTEST_INCLUDE_DIR:PATH=${GTEST_INCLUDE_DIR}
 
     -DUSB_10_LIBRARY:path=/usr/lib
     -DUSB_10_INCLUDE_DIR:path=/usr/include

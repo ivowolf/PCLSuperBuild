@@ -187,7 +187,7 @@ ${ADDITIONAL_CMAKECACHE_OPTION}
     # Note should be at the end
     #-------------------------------------------------------------------------
     ctest_submit()
-
+    ctest_submit(PARTS Notes)
   else()
     file(REMOVE ${build_in_progress_file})
   endif()

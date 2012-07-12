@@ -27,6 +27,7 @@ set(expected_variables
   )
 
 set(repository git://gitorious.org/pclsuperbuild/pclsuperbuild.git)
+set(pcl_repository http://svn.pointclouds.org/pcl/trunk)
 
 if(EXISTS "${CTEST_LOG_FILE}")
   list(APPEND CTEST_NOTES_FILES ${CTEST_LOG_FILE})
@@ -84,6 +85,10 @@ if(empty_binary_directory)
 endif()
 
 set(CTEST_UPDATE_COMMAND "${CTEST_SVN_COMMAND}")
+
+if(NOT EXISTS "${CTEST_BINARY_DIRECTORY}/PCL")
+  set(CTEST_CHECKOUT_COMMAND "${CTEST_SVN_COMMAND} checkout ${pcl_repository} ${CTEST_BINARY_DIRECTORY}/PCL")
+endif()
 
 #
 # run_ctest macro

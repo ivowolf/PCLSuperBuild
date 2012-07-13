@@ -60,8 +60,12 @@ elseif(SCRIPT_MODE STREQUAL "continuous")
   set(empty_binary_directory TRUE)
   set(force_build FALSE)
   set(model Continuous)
-elseif(SCRIPT_MODE STREQUAL "nightly")
+elseif(SCRIPT_MODE STREQUAL "nightly_clean")
   set(empty_binary_directory TRUE)
+  set(force_build TRUE)
+  set(model Nightly)
+elseif(SCRIPT_MODE STREQUAL "nightly_noclean")
+  set(empty_binary_directory FALSE)
   set(force_build TRUE)
   set(model Nightly)
 else()
@@ -126,7 +130,6 @@ ${ADDITIONAL_CMAKECACHE_OPTION}
     #-------------------------------------------------------------------------
     # Update
     #-------------------------------------------------------------------------
-##    ctest_submit(PARTS Update)
 
     #-------------------------------------------------------------------------
     # Configure
@@ -136,17 +139,16 @@ ${ADDITIONAL_CMAKECACHE_OPTION}
     # First configure the SuperBuild
     ctest_configure(BUILD "${CTEST_BINARY_DIRECTORY}")
     ctest_read_custom_files("${CTEST_BINARY_DIRECTORY}")
-#    ctest_submit(PARTS Configure)
 
     # Then configure PCL
     set(pcl_build_dir "${CTEST_BINARY_DIRECTORY}/PCL-build")
     set(pcl_source_dir "${CTEST_BINARY_DIRECTORY}/PCL")
-    ctest_configure(
-      BUILD "${pcl_build_dir}"
-      SOURCE "${pcl_source_dir}"
-      APPEND)
-##    ctest_submit(PARTS Configure)
-
+    if(NOT empty_binary_directory)
+      ctest_configure(
+        BUILD "${pcl_build_dir}"
+        SOURCE "${pcl_source_dir}"
+        APPEND)
+    endif()
 
     #-------------------------------------------------------------------------
     # Build top level
@@ -154,7 +156,6 @@ ${ADDITIONAL_CMAKECACHE_OPTION}
     set(build_errors)
     message("----------- [ Build ${CTEST_PROJECT_NAME} ] -----------")
     ctest_build(BUILD "${CTEST_BINARY_DIRECTORY}" NUMBER_ERRORS build_errors)
-##    ctest_submit(PARTS Build)
  
     file(REMOVE ${build_in_progress_file})
 
@@ -165,7 +166,6 @@ ${ADDITIONAL_CMAKECACHE_OPTION}
     ctest_test(
       BUILD "${pcl_build_dir}"
     )
-##    ctest_submit(PARTS Test)
 
     #-------------------------------------------------------------------------
     # Global coverage ...

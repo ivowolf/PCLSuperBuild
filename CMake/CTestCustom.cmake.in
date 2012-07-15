@@ -6,6 +6,10 @@ SET(CTEST_CUSTOM_WARNING_MATCH
   ${CTEST_CUSTOM_WARNING_MATCH}
   )
 
+SET(CTEST_CUSTOM_ERROR_EXCEPTION
+  ${CTEST_CUSTOM_ERROR_EXCEPTION}
+  "configure.ac:.*: installing"
+  )
 SET(CTEST_CUSTOM_WARNING_EXCEPTION
   ${CTEST_CUSTOM_WARNING_EXCEPTION}
   #boost
@@ -19,7 +23,8 @@ SET(CTEST_CUSTOM_WARNING_EXCEPTION
   "boost.*warning.*declaration of .* shadows a member of"
   "boost.*warning.*unused parameter"
   "boost.*warning.*comparison between signed and unsigned integer expressions"
-
+  "boost.*warning.*control reaches end of non-void function"
+  "libs/python/src/object/.*warning.*"
   )
 
 SET(CTEST_CUSTOM_COVERAGE_EXCLUDE

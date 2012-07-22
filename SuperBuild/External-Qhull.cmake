@@ -15,6 +15,7 @@ ExternalProject_Add(Qhull
   CMAKE_GENERATOR ${gen}
   CMAKE_ARGS
     ${ep_common_args}
+    -DCMAKE_BUILD_TYPE:STRING=${CTEST_BUILD_CONFIGURATION}
     -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_BINARY_DIR}/Qhull-install
 )
 

@@ -21,5 +21,9 @@ ExternalProject_Add(Qhull
 
 set(QHULL_INCLUDE_DIR ${CMAKE_BINARY_DIR}/Qhull-install/include)
 set(QHULL_ROOT ${CMAKE_BINARY_DIR}/Qhull-install)
-set(QHULL_LIBRARY ${CMAKE_BINARY_DIR}/Qhull-install/lib/libqhull${CMAKE_SHARED_LIBRARY_SUFFIX})
+if(NOT (CMAKE_SYSTEM_NAME STREQUAL "Windows"))
+  set(QHULL_LIBRARY ${CMAKE_BINARY_DIR}/Qhull-install/lib/libqhull${CMAKE_SHARED_LIBRARY_SUFFIX})
+else()
+  set(QHULL_LIBRARY ${CMAKE_BINARY_DIR}/Qhull-install/lib/qhullstatic.lib)
+endif()
 

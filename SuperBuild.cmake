@@ -15,6 +15,7 @@
 #   set(EIGEN3_URL "http://mirrors.mit.edu/ubuntu/pool/universe/e/eigen3/eigen3_3.0.5.orig.tar.bz2")
 # FLANN:
 #   set(FLANN_URL "http://people.cs.ubc.ca/~mariusm/uploads/FLANN/flann-1.7.1-src.zip")
+#   set(FLANN_URL "http://www.cs.ubc.ca/research/flann/uploads/FLANN/flann-1.8.4-src.zip")
 # Qhull:
 #    set( QHULL_TAG "master" )
 # VTK:
@@ -44,9 +45,11 @@ endif()
 
 set( PCL_DEPENDENCIES )
 
-if( NOT USB_10_LIBRARY OR NOT USB_10_INCLULDE_DIR)
-  include( ${CMAKE_SOURCE_DIR}/SuperBuild/External-libusb.cmake )
-  list( APPEND PCL_DEPENDENCIES libusb )
+if(NOT (CMAKE_SYSTEM_NAME STREQUAL "Windows"))
+  if( NOT USB_10_LIBRARY OR NOT USB_10_INCLULDE_DIR)
+    include( ${CMAKE_SOURCE_DIR}/SuperBuild/External-libusb.cmake )
+    list( APPEND PCL_DEPENDENCIES libusb )
+  endif()
 endif()
 
 if( NOT BOOST_ROOT )
@@ -74,18 +77,23 @@ if( NOT QHULL_LIBRARY OR NOT QHULL_INCLUDE_DIR)
   list( APPEND PCL_DEPENDENCIES Qhull )
 endif()
 
+if( WIN32)
+  set(PCL_PATCH_COMMAND ${CMAKE_COMMAND} -DTEMPLATE_FILE:FILEPATH=${PCLSuperBuild_SOURCE_DIR}/CMakeExternals/EmptyFileForPatching.dummy -P ${PCLSuperBuild_SOURCE_DIR}/CMakeExternals/PatchPCL.cmake)
+endif()
+
 ExternalProject_Add( PCL
   DEPENDS ${PCL_DEPENDENCIES}
-  SVN_REPOSITORY "http://svn.pointclouds.org/pcl/trunk"
-  SVN_REVISION -r "HEAD"
+  GIT_REPOSITORY "https://github.com/PointCloudLibrary/pcl.git"
+  GIT_TAG "pcl-1.7.2" #6951197e3926c1dbe8293f610ae11941d9d807fc"
   SOURCE_DIR PCL
   BINARY_DIR PCL-build
   CMAKE_GENERATOR ${gen}
+  PATCH_COMMAND ${PCL_PATCH_COMMAND}
   CMAKE_ARGS
     ${ep_common_args}
     -DCMAKE_BUILD_TYPE:STRING=${CTEST_BUILD_CONFIGURATION}
     -DBUILD_SHARED_LIBS:BOOL=TRUE
-    -DBUILD_TESTS:BOOL=TRUE
+    -DBUILD_TESTS:BOOL=FALSE#TRUE
     # Eigen3
     -DEIGEN_INCLUDE_DIR:PATH=${EIGEN_INCLUDE_DIR}
     # Boost

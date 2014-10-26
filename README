@@ -1,11 +1,19 @@
+This is a clone of the PCLSuperBuild repository on gitorious 
+(https://gitorious.org/pclsuperbuild/pclsuperbuild/) with 
+some patches for windows. Currently, it seems to work for
+MSVC2012 x64 (but it has not been intensively tested yet!!).
+
+Currently, this project tries to build PCL version 1.7.2.
+
+If you get an error in openni\include\XnPlatform.h that it
+versions above 2010 are not supported: simply change the line
+#if _MSC_VER > 1600 
+to
+#if _MSC_VER > 1700
+
 To use this cmake project:
 
 1) Clone the repository:
-   git clone git://gitorious.org/pclsuperbuild/pclsuperbuild.git PCLSuperBuild
-2) Create a build directory
-   mkdir PCLSuperBuild-build
-3) Configure the build
-   cd PCLSuperBuild-build
-   cmake ../PCLSuperBuild
-4) Build PCL and its requisites
-   make
+   git clone https://github.com/ivowolf/PCLSuperBuild.git PCLSuperBuild
+2) Use CMake to configure the build
+3) Build PCL and its requisites

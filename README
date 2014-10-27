@@ -11,6 +11,8 @@ versions above 2010 are not supported: simply change the line
 to
 #if _MSC_VER > 1700
 
+If you get an error that zlib.h, z.lib, zlib.lib, zdll.lib or similar cannot be found, don't worry, this is just boosting testing whether it has to compile it itself. So it is not an error, but just an attempt to find zlib. 
+
 To use this cmake project:
 
 1) Clone the repository:
